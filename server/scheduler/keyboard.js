@@ -11,13 +11,17 @@ module.exports = async function (db) {
       const keyboardTable = db.get("keyboard").value();
       console.log(keyboardTable);
 
+      if (!keyboardTable.length) return;
+
       keyboardTable.forEach(async ({ number, email }) => {
         const res = await axios(baseUrl + number);
         const dom = new JSDOM(res.data);
         const text = dom.window.document.querySelector("#formItem tbody tr:nth-child(2)").textContent.trim();
 
-        if (text.match(/품절/)) return console.log("품절 상태");
+        if (text.match(/품절/)) return console.log("품절");
+
         sendEmail(email, number);
+        db.get("keyboard").remove({ email, number }).write();
       });
     },
     function () {
