@@ -5,7 +5,7 @@ const { sendEmail } = require("../mail/sender.js");
 
 module.exports = async function (db) {
   new CronJob(
-    "10 * * * * *",
+    "0 0 * * * *",
     function () {
       const baseUrl = "https://www.leopold.co.kr/Shop/Item.php?ItId=";
       const keyboardTable = db.get("keyboard").value();
