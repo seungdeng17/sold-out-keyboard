@@ -1,11 +1,9 @@
-// require("./scheduler/keyboard.js")();
-
 const { db } = require("./db.js");
-db.get("keyboard")
-  .push({
-    number: "1550022100",
-    email: "stlee@rsupport.com",
-  })
-  .write();
+require("./scheduler/keyboard.js")(db);
 
-console.log(db.get("keyboard").value());
+// db.get("keyboard")
+// .push({
+//   number: "1550022100",
+//   email: "stlee@rsupport.com",
+// })
+// .write();

@@ -3,22 +3,22 @@ const axios = require("axios");
 const { JSDOM } = require("jsdom");
 const { sendEmail } = require("../mail/sender.js");
 
-module.exports = async function () {
-  const { db } = require("../db.js");
-
+module.exports = async function (db) {
   new CronJob(
     "0 * * * * *",
-    async function () {
+    function () {
       const baseUrl = "https://www.leopold.co.kr/Shop/Item.php?ItId=";
-      const keyboardTableValue = db.get("keyboard").value();
+      const keyboardTable = db.get("keyboard").value();
+      console.log(keyboardTable);
 
-    //   keyboardTableValue.forEach()
-      const res = await axios(baseUrl + arr[0]);
-      const dom = new JSDOM(res.data);
-      const text = dom.window.document.querySelector("#formItem tbody tr:nth-child(2)").textContent.trim();
+      keyboardTable.forEach(async ({ number, email }) => {
+        const res = await axios(baseUrl + number);
+        const dom = new JSDOM(res.data);
+        const text = dom.window.document.querySelector("#formItem tbody tr:nth-child(2)").textContent.trim();
 
-      if (text.match(/품절/)) return console.log("품절 상태");
-      sendEmail("stlee@rsupport.com", arr[0]);
+        if (text.match(/품절/)) return console.log("품절 상태");
+        sendEmail(email, number);
+      });
     },
     function () {
       console.log("Error CronJob.");
