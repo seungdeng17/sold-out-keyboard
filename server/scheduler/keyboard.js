@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const CronJob = require("cron").CronJob;
 const axios = require("axios");
 const { JSDOM } = require("jsdom");
@@ -7,7 +9,7 @@ module.exports = async function (db) {
   new CronJob(
     "0 0 * * * *",
     function () {
-      const baseUrl = "https://www.leopold.co.kr/Shop/Item.php?ItId=";
+      const baseUrl = process.env.TARGET_BASE_URL;
       const keyboardTable = db.get("keyboard").value();
 
       if (!keyboardTable.length) return;
