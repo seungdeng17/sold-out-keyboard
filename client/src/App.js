@@ -11,7 +11,7 @@ const App = () => {
         <Form />
       </Content>
       <Footer>
-        <a href="https://github.com/seungdeng17/sold-out-keyboard" target="_blank">
+        <a href="https://github.com/seungdeng17/sold-out-keyboard" target="_blank" rel="noreferrer">
           README
         </a>
       </Footer>

@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import styled from "styled-components";
 import { request } from "./utils";
+import Ripples from "react-ripples";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -23,7 +24,7 @@ const Form = () => {
 
   const onInquiryHandler = useCallback(async () => {
     const { resultCode, data } = await request(`${BASE_URL}/api/keyboard?email=${email}`);
-    console.log(resultCode, data);
+    if (resultCode === "100") console.log(resultCode, data);
   }, [email]);
 
   const onChangeEmail = useCallback(({ target }) => setEmail(target.value), []);
@@ -34,13 +35,19 @@ const Form = () => {
       <input type="email" placeholder="메일 주소" value={email} onChange={onChangeEmail} />
       <input type="number" placeholder="제품 번호" value={number} onChange={onChangeNumber} />
       <ButtonWrapper>
-        <button type="submit">등록</button>
-        <button type="button" onClick={onDeleteHandler}>
-          삭제
-        </button>
-        <button type="button" onClick={onInquiryHandler}>
-          등록 목록 조회
-        </button>
+        <Ripples color="rgba(255, 255, 255, 0.2)" during={1400}>
+          <button type="submit">등록</button>
+        </Ripples>
+        <Ripples color="rgba(255, 255, 255, 0.2)" during={1400}>
+          <button type="button" onClick={onDeleteHandler}>
+            삭제
+          </button>
+        </Ripples>
+        <Ripples color="rgba(255, 255, 255, 0.2)" during={1800}>
+          <button type="button" onClick={onInquiryHandler}>
+            등록 목록 조회
+          </button>
+        </Ripples>
       </ButtonWrapper>
     </FormWrapper>
   );
@@ -85,11 +92,20 @@ const ButtonWrapper = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 
+  .react-ripples {
+    width: calc(50% - 6px);
+
+    :last-child {
+      flex-grow: 2;
+      margin-top: 12px;
+    }
+  }
+
   button {
     border-radius: 10px;
     border: none;
     outline: none;
-    width: calc(50% - 6px);
+    width: 100%;
     height: 50px;
     cursor: pointer;
     background-color: #3182f6;
@@ -100,11 +116,6 @@ const ButtonWrapper = styled.div`
 
     :hover {
       background-color: #1c64da;
-    }
-
-    :last-child {
-      flex-grow: 2;
-      margin-top: 12px;
     }
   }
 `;

@@ -7,5 +7,6 @@ export const request = async (url, method = "get", data = {}) => {
     return response.data;
   } catch ({ response }) {
     alert(response.data.message);
+    return response.data;
   }
 };
