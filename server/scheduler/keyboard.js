@@ -4,12 +4,15 @@ const { JSDOM } = require("jsdom");
 const { sendEmail } = require("../mail/sender.js");
 
 module.exports = async function () {
+  const { db } = require("../db.js");
+
   new CronJob(
     "0 * * * * *",
     async function () {
       const baseUrl = "https://www.leopold.co.kr/Shop/Item.php?ItId=";
-      const arr = ["1550022100"];
+      const keyboardTableValue = db.get("keyboard").value();
 
+    //   keyboardTableValue.forEach()
       const res = await axios(baseUrl + arr[0]);
       const dom = new JSDOM(res.data);
       const text = dom.window.document.querySelector("#formItem tbody tr:nth-child(2)").textContent.trim();
