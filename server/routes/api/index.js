@@ -8,6 +8,6 @@ router.post("/keyboard", controller.addKeyboard);
 router.delete("/keyboard", controller.removeKeyboard);
 
 // [GET] 메일로 등록한 내용 조회
-router.get("/keyboard", controller.getMyKeyboard);
+router.get("/keyboard", controller.getKeyboard);
 
 module.exports = router;

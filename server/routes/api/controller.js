@@ -40,16 +40,16 @@ exports.removeKeyboard = (req, res) => {
     })
     .write();
 
-  return res.status(200).json({ message: "삭제 되었어요." });
+  return res.status(200).json({ resultCode: "100", message: "삭제 되었어요." });
 };
 
 // [GET] 메일로 등록한 내용 조회
-exports.getMyKeyboard = (req, res) => {
+exports.getKeyboard = (req, res) => {
   const { email } = req.query;
   if (!email) return res.status(400).json({ message: "메일를 정확히 입력해주세요." });
 
   const keyboardTable = db.get("keyboard").value();
   const duplicateEmail = keyboardTable.filter((data) => data.email === email);
 
-  return res.status(200).json({ data: duplicateEmail });
+  return res.status(200).json({ resultCode: "100", data: duplicateEmail });
 };

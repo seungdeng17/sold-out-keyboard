@@ -21,6 +21,11 @@ const Form = () => {
     request(`${BASE_URL}/api/keyboard`, "delete", { data: { email, number } });
   }, [email, number]);
 
+  const onInquiryHandler = useCallback(async () => {
+    const { resultCode, data } = await request(`${BASE_URL}/api/keyboard?email=${email}`);
+    console.log(resultCode, data);
+  }, [email]);
+
   const onChangeEmail = useCallback(({ target }) => setEmail(target.value), []);
   const onChangeNumber = useCallback(({ target }) => setNumber(target.value), []);
 
@@ -32,6 +37,9 @@ const Form = () => {
         <button type="submit">등록</button>
         <button type="button" onClick={onDeleteHandler}>
           삭제
+        </button>
+        <button type="button" onClick={onInquiryHandler}>
+          등록 목록 조회
         </button>
       </ButtonWrapper>
     </FormWrapper>
@@ -75,6 +83,7 @@ const ButtonWrapper = styled.div`
   width: 400px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   button {
     border-radius: 10px;
@@ -91,6 +100,11 @@ const ButtonWrapper = styled.div`
 
     :hover {
       background-color: #1c64da;
+    }
+
+    :last-child {
+      flex-grow: 2;
+      margin-top: 12px;
     }
   }
 `;
