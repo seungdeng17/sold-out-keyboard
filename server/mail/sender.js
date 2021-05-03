@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 
 function sendEmail(receiverEmail, keyboardNumber) {
   const options = {
-    from: "나도 살래 키보드 <email>",
+    from: "나도 살래 키보드",
     to: receiverEmail,
     subject: "[나도 살래 키보드] 키보드가 입고 되었어요",
     html: mailTemplate(keyboardNumber),
