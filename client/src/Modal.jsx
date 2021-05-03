@@ -83,8 +83,8 @@ const ModalWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 330px;
-  min-height: 120px;
+  min-width: 300px;
+  min-height: 110px;
   background-color: #fff;
   border-radius: 12px;
   z-index: 101;
@@ -92,7 +92,7 @@ const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 15px;
+  padding: 15px;
 
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.3);
