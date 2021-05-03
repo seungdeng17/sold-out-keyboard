@@ -1,0 +1,27 @@
+{
+  "name": "sold-out-keyboard",
+  "version": "1.0.0",
+  "description": "키보드 입고 알림",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm run start",
+    "server": "cd server && nodemon app.js --ignore db.json",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seungdeng17/sold-out-keyboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seungdeng17/sold-out-keyboard/issues"
+  },
+  "homepage": "https://github.com/seungdeng17/sold-out-keyboard#readme",
+  "dependencies": {
+    "concurrently": "^6.0.2",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^1.3.1"
+  }
+}

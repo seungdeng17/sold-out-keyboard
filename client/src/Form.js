@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 const Form = () => {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const emailRef = useRef();
   const keyboardNumberRef = useRef();
 
@@ -11,7 +12,7 @@ const Form = () => {
     const email = emailRef.current.value;
     const number = keyboardNumberRef.current.value;
     try {
-      const response = await axios.post("http://localhost:3001/api/keyboard", { email, number });
+      const response = await axios.post(`${BASE_URL}/api/keyboard`, { email, number });
       alert(response.data.message);
     } catch ({ response }) {
       alert(response.data.message);
@@ -22,7 +23,7 @@ const Form = () => {
     const email = emailRef.current.value;
     const number = keyboardNumberRef.current.value;
     try {
-      const response = await axios.delete("http://localhost:3001/api/keyboard", { data: { email, number } });
+      const response = await axios.delete(`${BASE_URL}/api/keyboard`, { data: { email, number } });
       alert(response.data.message);
     } catch ({ response }) {
       alert(response.data.message);
