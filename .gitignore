@@ -1,0 +1,16 @@
+# client
+/client/node_modules
+/client/yarn.lock
+/client/package-lock.json
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
+/client/build
+
+# server
+/server/node_modules
+/server/yarn.lock
+/server/package-lock.json
+/server/npm-debug.log*
+/server/yarn-debug.log*
+/server/yarn-error.log*
