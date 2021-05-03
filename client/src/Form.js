@@ -26,7 +26,9 @@ const Form = () => {
 
   const onInquiryHandler = useCallback(async () => {
     const { resultCode, data } = await request(openModal, `${BASE_URL}/api/keyboard?email=${email}`);
-    if (resultCode === "100") console.log(resultCode, data);
+    if (!resultCode === "100") return;
+    if (!data.length) return openModal("등록 된 정보가 없습니다.");
+    openModal(data);
   }, [email, openModal]);
 
   const onChangeEmail = useCallback(({ target }) => setEmail(target.value), []);

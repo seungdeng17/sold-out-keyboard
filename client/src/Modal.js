@@ -3,6 +3,8 @@ import { ModalContext } from "./ModalContext";
 import styled from "styled-components";
 import Ripples from "react-ripples";
 
+import ModalContent from "./ModalContent";
+
 const Modal = () => {
   const { isOpen, modalContent, closeModal } = useContext(ModalContext);
   const [className, setClassName] = useState("show");
@@ -24,7 +26,9 @@ const Modal = () => {
         <>
           <Outter className={className} onClick={onCloseHandler} />
           <ModalWrapper className={className}>
-            <ModalContent>{modalContent}</ModalContent>
+            <ModalContentWrapper>
+              <ModalContent data={modalContent} />
+            </ModalContentWrapper>
             <Ripples color="rgba(255, 255, 255, 0.2)" during={1200}>
               <button type="button" onClick={onCloseHandler}>
                 닫기
@@ -79,8 +83,8 @@ const ModalWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 350px;
-  min-height: 150px;
+  min-width: 330px;
+  min-height: 120px;
   background-color: #fff;
   border-radius: 12px;
   z-index: 101;
@@ -88,6 +92,7 @@ const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px 15px;
 
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.3);
@@ -150,9 +155,13 @@ const ModalWrapper = styled.div`
       }
     }
   }
+
+  ul > li {
+    margin: 5px 0;
+  }
 `;
 
-const ModalContent = styled.div`
+const ModalContentWrapper = styled.div`
   color: #222;
   padding-bottom: 40px;
 `;
