@@ -1,31 +1,33 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useContext } from "react";
 import styled from "styled-components";
 import { request } from "./utils";
 import Ripples from "react-ripples";
+import { ModalContext } from "./ModalContext";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Form = () => {
+  const { isOpen, openModal } = useContext(ModalContext);
   const [email, setEmail] = useState(localStorage.getItem("email") ?? "");
   const [number, setNumber] = useState("");
 
   const onSubmitHandler = useCallback(
     async (e) => {
       e.preventDefault();
-      const { resultCode } = await request(`${BASE_URL}/api/keyboard`, "post", { email, number });
+      const { resultCode } = await request(openModal, `${BASE_URL}/api/keyboard`, "post", { email, number });
       if (resultCode === "100") localStorage.setItem("email", email);
     },
-    [email, number],
+    [email, number, openModal],
   );
 
   const onDeleteHandler = useCallback(() => {
-    request(`${BASE_URL}/api/keyboard`, "delete", { data: { email, number } });
-  }, [email, number]);
+    request(openModal, `${BASE_URL}/api/keyboard`, "delete", { data: { email, number } });
+  }, [email, number, openModal]);
 
   const onInquiryHandler = useCallback(async () => {
-    const { resultCode, data } = await request(`${BASE_URL}/api/keyboard?email=${email}`);
+    const { resultCode, data } = await request(openModal, `${BASE_URL}/api/keyboard?email=${email}`);
     if (resultCode === "100") console.log(resultCode, data);
-  }, [email]);
+  }, [email, openModal]);
 
   const onChangeEmail = useCallback(({ target }) => setEmail(target.value), []);
   const onChangeNumber = useCallback(({ target }) => setNumber(target.value), []);
@@ -34,11 +36,11 @@ const Form = () => {
     <FormWrapper onSubmit={onSubmitHandler}>
       <input type="email" placeholder="메일 주소" value={email} onChange={onChangeEmail} />
       <input type="number" placeholder="제품 번호" value={number} onChange={onChangeNumber} />
-      <ButtonWrapper>
-        <Ripples color="rgba(255, 255, 255, 0.2)" during={1400}>
+      <ButtonWrapper {...{ isOpen }}>
+        <Ripples color="rgba(255, 255, 255, 0.2)" during={1200}>
           <button type="submit">등록</button>
         </Ripples>
-        <Ripples color="rgba(255, 255, 255, 0.2)" during={1400}>
+        <Ripples color="rgba(255, 255, 255, 0.2)" during={1200}>
           <button type="button" onClick={onDeleteHandler}>
             삭제
           </button>
@@ -63,7 +65,7 @@ const FormWrapper = styled.form`
     display: block;
     margin-bottom: 12px;
     text-indent: 16px;
-    color: #2f3542;
+    color: #222;
     font-size: 15px;
     box-sizing: border-box;
     transition: 0.3s;
@@ -91,9 +93,11 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  pointer-events: ${({ isOpen }) => (isOpen ? "none" : "auto")};
 
   .react-ripples {
     width: calc(50% - 6px);
+    border-radius: 10px;
 
     :last-child {
       flex-grow: 2;

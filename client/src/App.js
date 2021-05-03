@@ -2,11 +2,14 @@ import styled from "styled-components";
 
 import GlobalStyles from "./GlobalStyles";
 import Form from "./Form";
+import Modal from "./Modal";
+import { ModalProvider } from "./ModalContext";
 
 const App = () => {
   return (
-    <>
+    <ModalProvider>
       <GlobalStyles />
+      <Modal />
       <Content>
         <Form />
       </Content>
@@ -15,7 +18,7 @@ const App = () => {
           README
         </a>
       </Footer>
-    </>
+    </ModalProvider>
   );
 };
 
