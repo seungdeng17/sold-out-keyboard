@@ -3,7 +3,7 @@ const { db } = require("../../db.js");
 // [POST] 키보드, 이메일 알림 추가
 exports.addKeyboard = (req, res) => {
   const { email, number } = req.body;
-  if (!email || !number) return res.status(404).json({ message: "메일 주소와 제품 번호를 정확히 입력해주세요." });
+  if (!email || !number) return res.status(400).json({ message: "메일 주소와 제품 번호를 정확히 입력해주세요." });
 
   const keyboardTable = db.get("keyboard").value();
   const duplicateEmail = keyboardTable.filter((data) => data.email === email);
@@ -20,13 +20,13 @@ exports.addKeyboard = (req, res) => {
     })
     .write();
 
-  return res.status(201).json({ message: "등록 되었어요." });
+  return res.status(201).json({ resultCode: "100", message: "등록 되었어요." });
 };
 
 // [DELETE] 키보드, 이메일 알림 삭제
 exports.removeKeyboard = (req, res) => {
   const { email, number } = req.body;
-  if (!email || !number) return res.status(404).json({ message: "메일 주소와 제품 번호를 정확히 입력해주세요." });
+  if (!email || !number) return res.status(400).json({ message: "메일 주소와 제품 번호를 정확히 입력해주세요." });
 
   const keyboardTable = db.get("keyboard").value();
   const removeData = keyboardTable.filter((data) => data.email === email && data.number === number);
@@ -46,7 +46,7 @@ exports.removeKeyboard = (req, res) => {
 // [GET] 메일로 등록한 내용 조회
 exports.getMyKeyboard = (req, res) => {
   const { email } = req.query;
-  if (!email) return res.status(404).json({ message: "메일를 정확히 입력해주세요." });
+  if (!email) return res.status(400).json({ message: "메일를 정확히 입력해주세요." });
 
   const keyboardTable = db.get("keyboard").value();
   const duplicateEmail = keyboardTable.filter((data) => data.email === email);

@@ -1,39 +1,33 @@
-import { useRef } from "react";
+import { useState, useCallback } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import { request } from "./utils";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Form = () => {
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const emailRef = useRef();
-  const keyboardNumberRef = useRef();
+  const [email, setEmail] = useState(localStorage.getItem("email") ?? "");
+  const [number, setNumber] = useState("");
 
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
-    const email = emailRef.current.value.trim();
-    const number = keyboardNumberRef.current.value.trim();
-    try {
-      const response = await axios.post(`${BASE_URL}/api/keyboard`, { email, number });
-      alert(response.data.message);
-    } catch ({ response }) {
-      alert(response.data.message);
-    }
-  };
+  const onSubmitHandler = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const { resultCode } = await request(`${BASE_URL}/api/keyboard`, "post", { email, number });
+      if (resultCode === "100") localStorage.setItem("email", email);
+    },
+    [email, number],
+  );
 
-  const onDeleteHandler = async () => {
-    const email = emailRef.current.value.trim();
-    const number = keyboardNumberRef.current.value.trim();
-    try {
-      const response = await axios.delete(`${BASE_URL}/api/keyboard`, { data: { email, number } });
-      alert(response.data.message);
-    } catch ({ response }) {
-      alert(response.data.message);
-    }
-  };
+  const onDeleteHandler = useCallback(() => {
+    request(`${BASE_URL}/api/keyboard`, "delete", { data: { email, number } });
+  }, [email, number]);
+
+  const onChangeEmail = useCallback(({ target }) => setEmail(target.value), []);
+  const onChangeNumber = useCallback(({ target }) => setNumber(target.value), []);
 
   return (
     <FormWrapper onSubmit={onSubmitHandler}>
-      <input type="email" ref={emailRef} placeholder="메일 주소" />
-      <input type="number" ref={keyboardNumberRef} placeholder="제품 번호" />
+      <input type="email" placeholder="메일 주소" value={email} onChange={onChangeEmail} />
+      <input type="number" placeholder="제품 번호" value={number} onChange={onChangeNumber} />
       <ButtonWrapper>
         <button type="submit">등록</button>
         <button type="button" onClick={onDeleteHandler}>
