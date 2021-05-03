@@ -5,20 +5,20 @@ const { sendEmail } = require("../mail/sender.js");
 
 module.exports = async function (db) {
   new CronJob(
-    "0 * * * * *",
+    "10 * * * * *",
     function () {
       const baseUrl = "https://www.leopold.co.kr/Shop/Item.php?ItId=";
       const keyboardTable = db.get("keyboard").value();
-      console.log(keyboardTable);
 
       if (!keyboardTable.length) return;
 
       keyboardTable.forEach(async ({ number, email }) => {
         const res = await axios(baseUrl + number);
         const dom = new JSDOM(res.data);
-        const text = dom.window.document.querySelector("#formItem tbody tr:nth-child(2)").textContent.trim();
+        const el = dom.window.document.querySelector("#formItem tbody tr:nth-child(2)");
 
-        if (text.match(/품절/)) return console.log("품절");
+        if (!el) return db.get("keyboard").remove({ email, number }).write();
+        if (el.textContent.trim().match(/품절/)) return;
 
         sendEmail(email, number);
         db.get("keyboard").remove({ email, number }).write();

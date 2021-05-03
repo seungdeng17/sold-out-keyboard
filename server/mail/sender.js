@@ -24,9 +24,7 @@ function sendEmail(receiverEmail, keyboardNumber) {
   };
 
   transporter.sendMail(options, function (error, info) {
-    if (error) {
-      return console.log("Mailer error", error);
-    }
+    if (error) return console.log("Mailer error", error);
     console.log("Mail sent: " + info.response);
   });
 }
