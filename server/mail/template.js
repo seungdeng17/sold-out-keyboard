@@ -70,7 +70,7 @@ module.exports = function (keyboardNumber) {
     '<table class="contents" style="border-collapse: collapse;border-spacing: 0;table-layout: fixed;width: 100%;">',
     "<tbody><tr>",
     '<td class="padded" style="padding: 0;vertical-align: top;padding-left: 32px;padding-right: 32px;word-break: break-word;word-wrap: break-word;">',
-    '<p class="size-12" style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 0;line-height: 19px;color: #565656;font-size: 12px;text-align: center;"><span style="color:rgb(153, 153, 153)">https://github.com/seungdeng17/sold-out-keyboard</span></p>',
+    '<p class="size-12" style="font-style: normal;font-weight: 400;Margin-bottom: 0;Margin-top: 0;line-height: 19px;color: #565656;font-size: 12px;text-align: center;"><span style="color:rgb(153, 153, 153)">© Created by Taek</span></p>',
     "</td>",
     "</tr>",
     "</tbody></table>",
