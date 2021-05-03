@@ -15,7 +15,7 @@ const ModalContent = ({ data }) => {
       </ul>
     );
   }
-  return <div />;
+  return <div>내용이 없습니다.</div>;
 };
 
 export default ModalContent;

@@ -1,6 +1,6 @@
 const { db } = require("../../db.js");
 
-// [POST] 키보드, 이메일 알림 추가
+// [POST] 키보드, 이메일 알람 추가
 exports.addKeyboard = (req, res) => {
   const { email, number } = req.body;
   if (!email || !number) return res.status(400).json({ resultCode: "400", message: "메일 주소와 제품 번호를 정확히 입력하세요." });
@@ -23,7 +23,7 @@ exports.addKeyboard = (req, res) => {
   return res.status(201).json({ resultCode: "100", message: "등록되었어요." });
 };
 
-// [DELETE] 키보드, 이메일 알림 삭제
+// [DELETE] 키보드, 이메일 알람 삭제
 exports.removeKeyboard = (req, res) => {
   const { email, number } = req.body;
   if (!email || !number) return res.status(400).json({ resultCode: "400", message: "메일 주소와 제품 번호를 정확히 입력하세요." });

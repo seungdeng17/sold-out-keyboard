@@ -1,7 +1,7 @@
 {
   "name": "sold-out-keyboard",
   "version": "1.0.0",
-  "description": "키보드 입고 알림",
+  "description": "키보드 입고 알람",
   "main": "index.js",
   "scripts": {
     "client": "cd client && npm run start",

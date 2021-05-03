@@ -1,4 +1,4 @@
-# 나도 살래 키보드
+# 나만 없는 키보드
 
 [ec2 배포 주소](http://ec2-3-35-141-218.ap-northeast-2.compute.amazonaws.com:3000/)
 
