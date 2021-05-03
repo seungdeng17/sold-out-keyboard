@@ -9,8 +9,8 @@ const Form = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    const email = emailRef.current.value;
-    const number = keyboardNumberRef.current.value;
+    const email = emailRef.current.value.trim();
+    const number = keyboardNumberRef.current.value.trim();
     try {
       const response = await axios.post(`${BASE_URL}/api/keyboard`, { email, number });
       alert(response.data.message);
@@ -20,8 +20,8 @@ const Form = () => {
   };
 
   const onDeleteHandler = async () => {
-    const email = emailRef.current.value;
-    const number = keyboardNumberRef.current.value;
+    const email = emailRef.current.value.trim();
+    const number = keyboardNumberRef.current.value.trim();
     try {
       const response = await axios.delete(`${BASE_URL}/api/keyboard`, { data: { email, number } });
       alert(response.data.message);
