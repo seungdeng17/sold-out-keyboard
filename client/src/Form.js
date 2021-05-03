@@ -32,8 +32,8 @@ const Form = () => {
 
   return (
     <FormWrapper onSubmit={onSubmitHandler}>
-      <input type="text" ref={emailRef} placeholder="메일 주소" />
-      <input type="text" ref={keyboardNumberRef} placeholder="제품 번호" />
+      <input type="email" ref={emailRef} placeholder="메일 주소" />
+      <input type="number" ref={keyboardNumberRef} placeholder="제품 번호" />
       <ButtonWrapper>
         <button type="submit">등록</button>
         <button type="button" onClick={onDeleteHandler}>
@@ -67,6 +67,12 @@ const FormWrapper = styled.form`
     :focus {
       border-color: #0984e3;
     }
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;
 
