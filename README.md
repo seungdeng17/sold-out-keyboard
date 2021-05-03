@@ -10,6 +10,17 @@
 <br>
 <br>
 
+## # 사용법
+1. 알람 받을 메일을 **정확하게** 입력
+2. 제품 번호 입력 (레오폴드 키보드만 가능..)
+   - 제품 번호는 상세보기 페이지 쿼리스트링 참고
+   - ![image](https://user-images.githubusercontent.com/58316983/116864192-6eb35e80-ac42-11eb-83e6-73b1993eca45.png)
+3. 등록
+4. 기다린다
+
+<br>
+<br>
+
 ## # UI
 <img width="502" alt="스크린샷 2021-05-04 오전 1 52 03" src="https://user-images.githubusercontent.com/58316983/116906663-84914580-ac7b-11eb-81eb-8e9a4d9a5ce6.png">
 
@@ -22,17 +33,6 @@
 <br>
 
 <img width="657" alt="스크린샷 2021-05-04 오전 2 01 20" src="https://user-images.githubusercontent.com/58316983/116907526-a808c000-ac7c-11eb-9eae-ce2877696254.png">
-
-<br>
-<br>
-
-## # 사용법
-1. 알람 받을 메일을 **정확하게** 입력
-2. 제품 번호 입력 (레오폴드 키보드만 가능..)
-   - 제품 번호는 상세보기 페이지 쿼리스트링 참고
-   - ![image](https://user-images.githubusercontent.com/58316983/116864192-6eb35e80-ac42-11eb-83e6-73b1993eca45.png)
-3. 등록
-4. 기다린다
 
 <br>
 <br>
