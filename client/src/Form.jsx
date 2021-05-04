@@ -19,7 +19,7 @@ const Form = () => {
   }, [email, number, openModal]);
 
   const onDeleteHandler = useCallback(async () => {
-    const { resultCode } = request(openModal, `${BASE_URL}/api/keyboard`, "delete", { data: { email, number } });
+    const { resultCode } = await request(openModal, `${BASE_URL}/api/keyboard`, "delete", { data: { email, number } });
     if (resultCode === VALID_CODE) localStorage.setItem("email", email);
   }, [email, number, openModal]);
 
