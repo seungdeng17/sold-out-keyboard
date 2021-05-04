@@ -5,28 +5,28 @@ import Ripples from "react-ripples";
 import { ModalContext } from "./ModalContext";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+const VALID_CODE = "100";
 
 const Form = () => {
   const { isOpen, openModal } = useContext(ModalContext);
   const [email, setEmail] = useState(localStorage.getItem("email") ?? "");
   const [number, setNumber] = useState("");
 
-  const onSubmitHandler = useCallback(
-    async (e) => {
-      e.preventDefault();
-      const { resultCode } = await request(openModal, `${BASE_URL}/api/keyboard`, "post", { email, number });
-      if (resultCode === "100") localStorage.setItem("email", email);
-    },
-    [email, number, openModal],
-  );
+  const onSubmitHandler = useCallback(async (e) => {
+    e.preventDefault();
+    const { resultCode } = await request(openModal, `${BASE_URL}/api/keyboard`, "post", { email, number });
+    if (resultCode === VALID_CODE) localStorage.setItem("email", email);
+  }, [email, number, openModal]);
 
-  const onDeleteHandler = useCallback(() => {
-    request(openModal, `${BASE_URL}/api/keyboard`, "delete", { data: { email, number } });
+  const onDeleteHandler = useCallback(async () => {
+    const { resultCode } = request(openModal, `${BASE_URL}/api/keyboard`, "delete", { data: { email, number } });
+    if (resultCode === VALID_CODE) localStorage.setItem("email", email);
   }, [email, number, openModal]);
 
   const onInquiryHandler = useCallback(async () => {
     const { resultCode, data } = await request(openModal, `${BASE_URL}/api/keyboard?email=${email}`);
-    if (!resultCode === "100") return;
+    if (!resultCode === VALID_CODE) return;
+    if (resultCode === VALID_CODE) localStorage.setItem("email", email);
     if (!data.length) return openModal("등록된 정보가 없습니다.");
     openModal(data);
   }, [email, openModal]);
