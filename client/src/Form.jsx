@@ -58,6 +58,8 @@ const Form = () => {
 };
 
 const FormWrapper = styled.form`
+  z-index: 1;
+
   input {
     width: 400px;
     height: 53.5px;

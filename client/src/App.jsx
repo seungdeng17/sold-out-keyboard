@@ -49,6 +49,7 @@ const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 0;
 
   a {
     font-size: 14px;
