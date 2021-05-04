@@ -24,17 +24,17 @@
 <br>
 
 ## # UI
-![스크린샷 2021-05-04 오전 11 22 34](https://user-images.githubusercontent.com/58316983/116954590-66533600-accb-11eb-8fd0-237add12d182.png)
+![스크린샷 2021-05-04 오후 1 49 26](https://user-images.githubusercontent.com/58316983/116962332-a670e380-ace0-11eb-93f1-29325959ae1b.png)
 
 <br>
 <br>
 
-![스크린샷 2021-05-04 오전 11 27 03](https://user-images.githubusercontent.com/58316983/116954715-b03c1c00-accb-11eb-86a8-291d876f182a.png)
+![스크린샷 2021-05-04 오후 1 50 15](https://user-images.githubusercontent.com/58316983/116962359-b4beff80-ace0-11eb-9727-07396507a638.png)
 
 <br>
 <br>
 
-<img width="685" alt="스크린샷 2021-05-04 오전 8 58 44" src="https://user-images.githubusercontent.com/58316983/116947213-1c605500-acb7-11eb-9743-da9dd5ca257e.png">
+![스크린샷 2021-05-04 오후 1 56 01](https://user-images.githubusercontent.com/58316983/116962371-bee0fe00-ace0-11eb-86d7-7c2f9866b86b.png)
 
 <br>
 <br>
