@@ -61,6 +61,6 @@ exports.getDB = (req, res) => {
   const { key } = req.query;
   if (key !== process.env.ADMIN_KEY) return res.status(400).json({ resultCode: "400" });
 
-  const data = require("../../db.json");
-  return res.status(200).send(data);
+  const keyboardTable = db.get("keyboard").value();
+  return res.status(200).json({ resultCode: "100", data: keyboardTable });
 };
