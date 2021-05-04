@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const { db } = require("../../db.js");
 
 // [POST] 키보드, 이메일 알람 추가
@@ -52,4 +54,13 @@ exports.getKeyboard = (req, res) => {
   const duplicateEmail = keyboardTable.filter((data) => data.email === email);
 
   return res.status(200).json({ resultCode: "100", data: duplicateEmail });
+};
+
+// [GET] DB 데이터 조회
+exports.getDB = (req, res) => {
+  const { key } = req.query;
+  if (key !== process.env.ADMIN_KEY) return res.status(400).json({ resultCode: "400" });
+
+  const data = require("../../db.json");
+  return res.status(200).send(data);
 };
