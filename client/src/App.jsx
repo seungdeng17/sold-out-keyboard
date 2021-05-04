@@ -37,7 +37,7 @@ const Content = styled.div`
 
   img {
     width: 320px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 `;
 
