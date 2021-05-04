@@ -137,6 +137,7 @@ const ModalWrapper = styled.div`
     border-radius: 8px;
     width: 80px;
     height: 35px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 1px 6px 0px, rgb(0 0 0 / 12%) 0px 1px 6px 0px;
 
     button {
       border: none;
@@ -147,7 +148,6 @@ const ModalWrapper = styled.div`
       color: #fff;
       font-size: 15px;
       transition: 0.3s;
-      box-shadow: rgb(0 0 0 / 12%) 0px 1px 6px 0px, rgb(0 0 0 / 12%) 0px 1px 6px 0px;
       cursor: pointer;
 
       :hover {

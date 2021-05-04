@@ -102,6 +102,7 @@ const ButtonWrapper = styled.div`
   .react-ripples {
     width: calc(50% - 6px);
     border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 1px 6px 0px, rgb(0 0 0 / 12%) 0px 1px 6px 0px;
 
     :last-child {
       flex-grow: 2;
@@ -120,7 +121,6 @@ const ButtonWrapper = styled.div`
     color: #fff;
     font-size: 15px;
     transition: 0.3s;
-    box-shadow: rgb(0 0 0 / 12%) 0px 1px 6px 0px, rgb(0 0 0 / 12%) 0px 1px 6px 0px;
 
     :hover {
       background-color: #1c64da;
