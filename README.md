@@ -24,12 +24,12 @@
 <br>
 
 ## # UI
-<img width="502" alt="스크린샷 2021-05-04 오전 1 52 03" src="https://user-images.githubusercontent.com/58316983/116906663-84914580-ac7b-11eb-81eb-8e9a4d9a5ce6.png">
+![스크린샷 2021-05-04 오전 11 22 34](https://user-images.githubusercontent.com/58316983/116954590-66533600-accb-11eb-8fd0-237add12d182.png)
 
 <br>
 <br>
 
-<img width="545" alt="스크린샷 2021-05-04 오전 1 52 51" src="https://user-images.githubusercontent.com/58316983/116906671-88bd6300-ac7b-11eb-9d98-5312ac9dc547.png">
+![스크린샷 2021-05-04 오전 11 27 03](https://user-images.githubusercontent.com/58316983/116954715-b03c1c00-accb-11eb-86a8-291d876f182a.png)
 
 <br>
 <br>
