@@ -32,7 +32,7 @@
 <br>
 <br>
 
-<img width="657" alt="스크린샷 2021-05-04 오전 2 01 20" src="https://user-images.githubusercontent.com/58316983/116907526-a808c000-ac7c-11eb-9eae-ce2877696254.png">
+<img width="685" alt="스크린샷 2021-05-04 오전 8 58 44" src="https://user-images.githubusercontent.com/58316983/116947213-1c605500-acb7-11eb-9743-da9dd5ca257e.png">
 
 <br>
 <br>
