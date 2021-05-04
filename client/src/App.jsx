@@ -5,12 +5,15 @@ import Form from "./Form";
 import Modal from "./Modal";
 import { ModalProvider } from "./ModalContext";
 
+import keyboardImgSrc from "./asset/keyboard.png";
+
 const App = () => {
   return (
     <ModalProvider>
       <GlobalStyles />
       <Modal />
       <Content>
+        <img src={keyboardImgSrc} alt="키보드" />
         <Form />
       </Content>
       <Footer>
@@ -28,6 +31,14 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  position: relative;
+  top: -100px;
+
+  img {
+    width: 320px;
+    margin-bottom: 10px;
+  }
 `;
 
 const Footer = styled.div`
