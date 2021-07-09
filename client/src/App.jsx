@@ -2,26 +2,27 @@ import styled from "styled-components";
 
 import GlobalStyles from "./GlobalStyles";
 import Form from "./Form";
-import Modal from "./Modal";
-import { ModalProvider } from "./ModalContext";
+import AlertModal from "./AlertModal";
+import { ModalProvider } from "react-simple-modal-provider";
 
 import keyboardImgSrc from "./asset/keyboard.png";
 
 const App = () => {
   return (
-    <ModalProvider>
+    <>
       <GlobalStyles />
-      <Modal />
-      <Content>
-        <img src={keyboardImgSrc} alt="키보드" />
-        <Form />
-      </Content>
+      <ModalProvider value={[AlertModal]}>
+        <Content>
+          <img src={keyboardImgSrc} alt="키보드" />
+          <Form />
+        </Content>
+      </ModalProvider>
       <Footer>
         <a href="https://github.com/seungdeng17/sold-out-keyboard" target="_blank" rel="noreferrer">
           README
         </a>
       </Footer>
-    </ModalProvider>
+    </>
   );
 };
 

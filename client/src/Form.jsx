@@ -1,35 +1,41 @@
-import { useState, useCallback, useContext } from "react";
+import { useState, useCallback } from "react";
+import { useModal } from "react-simple-modal-provider";
 import styled from "styled-components";
 import { request } from "./utils";
 import Ripples from "react-ripples";
-import { ModalContext } from "./ModalContext";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const VALID_CODE = "100";
 
 const Form = () => {
-  const { isOpen, openModal } = useContext(ModalContext);
   const [email, setEmail] = useState(localStorage.getItem("email") ?? "");
   const [number, setNumber] = useState("");
 
-  const onSubmitHandler = useCallback(async (e) => {
-    e.preventDefault();
-    const { resultCode } = await request(openModal, `${BASE_URL}/api/keyboard`, "post", { email, number });
-    if (resultCode === VALID_CODE) localStorage.setItem("email", email);
-  }, [email, number, openModal]);
+  const { open: alertModalOpen } = useModal("AlertModal");
+
+  const onSubmitHandler = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const { resultCode } = await request(alertModalOpen, `${BASE_URL}/api/keyboard`, "post", { email, number });
+      if (resultCode === VALID_CODE) localStorage.setItem("email", email);
+    },
+    [email, number, alertModalOpen],
+  );
 
   const onDeleteHandler = useCallback(async () => {
-    const { resultCode } = await request(openModal, `${BASE_URL}/api/keyboard`, "delete", { data: { email, number } });
+    alertModalOpen({ title: "!!" });
+
+    const { resultCode } = await request(alertModalOpen, `${BASE_URL}/api/keyboard`, "delete", { data: { email, number } });
     if (resultCode === VALID_CODE) localStorage.setItem("email", email);
-  }, [email, number, openModal]);
+  }, [email, number, alertModalOpen]);
 
   const onInquiryHandler = useCallback(async () => {
-    const { resultCode, data } = await request(openModal, `${BASE_URL}/api/keyboard?email=${email}`);
+    const { resultCode, data } = await request(alertModalOpen, `${BASE_URL}/api/keyboard?email=${email}`);
     if (!(resultCode === VALID_CODE)) return;
-    if (resultCode === VALID_CODE) localStorage.setItem("email", email);    
-    if (!data.length) return openModal("등록된 정보가 없습니다.");
-    openModal(data);
-  }, [email, openModal]);
+    if (resultCode === VALID_CODE) localStorage.setItem("email", email);
+    if (!data.length) return alertModalOpen({ message: "등록된 정보가 없습니다." });
+    alertModalOpen({ data });
+  }, [email, alertModalOpen]);
 
   const onChangeEmail = useCallback(({ target }) => setEmail(target.value), []);
   const onChangeNumber = useCallback(({ target }) => setNumber(target.value), []);
@@ -38,7 +44,7 @@ const Form = () => {
     <FormWrapper onSubmit={onSubmitHandler}>
       <input type="email" placeholder="메일 주소" value={email} onChange={onChangeEmail} />
       <input type="number" placeholder="제품 번호" value={number} onChange={onChangeNumber} />
-      <ButtonWrapper {...{ isOpen }}>
+      <ButtonWrapper>
         <Ripples color="rgba(255, 255, 255, 0.2)" during={1200}>
           <button type="submit">등록</button>
         </Ripples>
@@ -97,7 +103,6 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  pointer-events: ${({ isOpen }) => (isOpen ? "none" : "auto")};
 
   .react-ripples {
     width: calc(50% - 6px);
