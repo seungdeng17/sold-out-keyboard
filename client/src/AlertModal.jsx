@@ -6,7 +6,7 @@ export default function AlertModal({ children }) {
   const onClose = () => setOpen(false);
 
   return (
-    <Modal id="AlertModal" consumer={children} isOpen={isOpen} setOpen={setOpen} animation={modalAnimation.slideDown} duration={200}>
+    <Modal id="AlertModal" consumer={children} isOpen={isOpen} setOpen={setOpen} animation={modalAnimation.slideDown} duration={250}>
       <AlertModalBody onClose={onClose} />
     </Modal>
   );
