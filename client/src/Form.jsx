@@ -25,8 +25,8 @@ const Form = () => {
 
   const onInquiryHandler = useCallback(async () => {
     const { resultCode, data } = await request(openModal, `${BASE_URL}/api/keyboard?email=${email}`);
-    if (!resultCode === VALID_CODE) return;
-    if (resultCode === VALID_CODE) localStorage.setItem("email", email);
+    if (!(resultCode === VALID_CODE)) return;
+    if (resultCode === VALID_CODE) localStorage.setItem("email", email);    
     if (!data.length) return openModal("등록된 정보가 없습니다.");
     openModal(data);
   }, [email, openModal]);
