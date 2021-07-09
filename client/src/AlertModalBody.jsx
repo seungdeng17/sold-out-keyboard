@@ -1,9 +1,9 @@
-import { useModal } from "react-simple-modal-provider";
+import { useModalProps } from "react-simple-modal-provider";
 import styled from "styled-components";
 import Ripples from "react-ripples";
 
 export default function AlertModalBody({ onClose }) {
-  const { message, data } = useModal("AlertModal");
+  const { message, data } = useModalProps("AlertModal");
 
   return (
     <ModalWrapper>
